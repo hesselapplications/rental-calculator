@@ -4,7 +4,7 @@
       <v-col cols="4">
         <property-info class="my-4"></property-info>
         <purchase class="mb-4"/>
-        <mortgage/>
+        <loan-details/>
       </v-col>
     </v-row>
   </v-container>
@@ -13,13 +13,13 @@
 <script>
 import PropertyInfo from "@/components/PropertyInfo.vue"
 import Purchase from "@/components/Purchase.vue"
-import Mortgage from "@/components/Mortgage.vue"
+import LoanDetails from "@/components/LoanDetails.vue"
 
 export default {
   components: {
     PropertyInfo,
     Purchase,
-    Mortgage
+    LoanDetails
   }
 };
 </script>
