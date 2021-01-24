@@ -2,9 +2,9 @@
   <v-card>
     <v-card-title class="primary--text">Property Info</v-card-title>
     <v-card-text>
-      <v-row>
+      <v-row dense>
         <!-- ADDRESS -->
-        <v-col cols="4">
+        <v-col cols="12">
           <v-text-field
             v-model="address"
             label="Address"

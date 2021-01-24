@@ -2,19 +2,24 @@
   <v-card>
     <v-card-title class="primary--text">Mortgage</v-card-title>
     <v-card-text>
-      <v-row>
+      <v-row dense>
+        <!-- PURCHASE PRICE -->
         <v-col cols="4">
           <money-input
             v-model="purchasePrice"
             label="Purchase Price"
           ></money-input>
         </v-col>
+
+        <!-- DOWN PAYMENT -->
         <v-col cols="4">
           <percent-input
             v-model="downPaymentPercent"
             label="Down Payment"
           ></percent-input>
         </v-col>
+
+        <!-- LOAN AMOUNT -->
         <v-col cols="4">
           <percent-input
             :value="loanAmount"
@@ -22,6 +27,8 @@
             disabled
           ></percent-input>
         </v-col>
+
+        <!-- TERM YEARS -->
         <v-col cols="4">
           <v-text-field
             v-model="termYears"

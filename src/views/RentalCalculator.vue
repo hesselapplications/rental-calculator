@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="6">
+      <v-col cols="4">
         <property-info class="my-4"></property-info>
         <purchase class="mb-4"/>
         <mortgage/>
