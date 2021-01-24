@@ -5,7 +5,8 @@
         <property-info class="my-4"></property-info>
         <purchase class="mb-4"/>
         <loan-details class="mb-4"/>
-        <income/>
+        <income class="mb-4"/>
+        <expenses/>
       </v-col>
     </v-row>
   </v-container>
@@ -16,13 +17,15 @@ import PropertyInfo from "@/components/PropertyInfo.vue"
 import Purchase from "@/components/Purchase.vue"
 import LoanDetails from "@/components/LoanDetails.vue"
 import Income from "@/components/Income.vue"
+import Expenses from "@/components/Expenses.vue"
 
 export default {
   components: {
     PropertyInfo,
     Purchase,
     LoanDetails,
-    Income
+    Income,
+    Expenses
   }
 };
 </script>

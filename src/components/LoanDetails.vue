@@ -1,6 +1,8 @@
 <template>
   <v-card>
-    <v-card-title class="primary--text">Mortgage</v-card-title>
+    <v-card-title class="primary--text">
+      Loan Details
+    </v-card-title>
     <v-card-text>
       <v-row dense>
         <!-- CASH PURCHASE -->
@@ -13,7 +15,7 @@
 
         <template v-if="!cashPurchase">
           <!-- LOAN AMOUNT -->
-          <v-col cols="3">
+          <v-col cols="4">
             <money-input
               :value="loanAmount"
               label="Loan Amount"
@@ -21,17 +23,22 @@
           </v-col>
 
           <!-- INTEREST RATE -->
-          <v-col cols="3">
+          <v-col cols="4">
             <percent-input :value="interestRate" label="Interest Rate"></percent-input>
           </v-col>
 
+          <!-- INSURANCE RATE -->
+          <v-col cols="4">
+            <percent-input :value="insuranceRate" label="Insurance Rate"></percent-input>
+          </v-col>
+
           <!-- LOAN POINTS -->
-          <v-col cols="3">
+          <v-col cols="4">
             <percent-input :value="loanPoints" label="Loan Points"></percent-input>
           </v-col>
 
           <!-- TERM YEARS -->
-          <v-col cols="3">
+          <v-col cols="4">
             <v-text-field
               v-model="termYears"
               label="Term Years"
@@ -59,6 +66,7 @@ export default {
       cashPurchase: false,
       loanAmount: 400000,
       interestRate: 2.75,
+      insuranceRate: 0.23,
       loanPoints: 0.75,
       termYears: 30,
     };
