@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title>Mortgage</v-card-title>
+    <v-card-title class="primary--text">Mortgage</v-card-title>
     <v-card-text>
       <v-row>
         <v-col cols="4">

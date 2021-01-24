@@ -10,7 +10,7 @@ export default new Vuetify({
       },
     themes: {
       light: {
-        primary: '#66BB6A',
+        primary: '#26a65b',
       },
     },
   },
