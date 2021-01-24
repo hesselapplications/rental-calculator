@@ -8,7 +8,7 @@
       <v-toolbar-title>Rental Calculator</v-toolbar-title>
     </v-app-bar>
 
-    <v-main>
+    <v-main class="grey lighten-4">
       <router-view/>
     </v-main>
   </v-app>
