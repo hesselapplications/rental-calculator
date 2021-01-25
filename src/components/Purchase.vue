@@ -53,21 +53,14 @@
 
 <script>
 import MoneyInput from "@/components/inputs/MoneyInput.vue";
+import { sync } from 'vuex-pathify'
 
 export default {
   components: {
     MoneyInput,
   },
-  data() {
-    return {
-      purchasePrice: 450000,
-      closingCosts: 3500,
-      rehabbing: false,
-      afterRepairValue: 500000,
-      repairCosts: 50000,
-    };
-  },
   computed: {
+    ...sync("purchase@*"),
     closingCostsEstimate() {
       return `Estimate: $${this.purchasePrice * 0.01} to $${
         this.purchasePrice * 0.02

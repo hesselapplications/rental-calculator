@@ -17,15 +17,14 @@
 
 <script>
 import MoneyInput from "@/components/inputs/MoneyInput.vue";
+import { sync } from 'vuex-pathify'
 
 export default {
   components: {
     MoneyInput
   },
-  data() {
-    return {
-      grossMonthlyIncome: 1150 + 1400
-    };
-  },
+  computed: {
+    ...sync("income@*"),
+  }
 };
 </script>

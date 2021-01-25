@@ -94,27 +94,15 @@
 <script>
 import MoneyInput from "@/components/inputs/MoneyInput.vue";
 import PercentInput from "@/components/inputs/PercentInput.vue";
+import { sync } from 'vuex-pathify'
 
 export default {
   components: {
     MoneyInput,
     PercentInput,
   },
-  data() {
-    return {
-      annualPropertyTaxes: 4000,
-      monthlyPropertyInsurance: 75,
-      repairsAndMaintenance: 10,
-      vacancyRate: 5,
-      capitalExpendatures: 10,
-      managementFees: 0,
-      electricity: 0,
-      gas: 0,
-      waterAndSewer: 0,
-      garbage: 0,
-      hoa: 0,
-      other: 0,
-    };
-  },
+  computed: {
+    ...sync("expenses@*"),
+  }
 };
 </script>

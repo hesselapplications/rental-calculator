@@ -55,21 +55,15 @@
 <script>
 import MoneyInput from "@/components/inputs/MoneyInput.vue";
 import PercentInput from "@/components/inputs/PercentInput.vue";
+import { sync } from 'vuex-pathify'
 
 export default {
   components: {
     MoneyInput,
     PercentInput,
   },
-  data() {
-    return {
-      cashPurchase: false,
-      loanAmount: 400000,
-      interestRate: 2.75,
-      insuranceRate: 0.23,
-      loanPoints: 0.75,
-      termYears: 30,
-    };
-  },
+  computed: {
+    ...sync("loanDetails@*"),
+  }
 };
 </script>
