@@ -6,7 +6,7 @@
         <!-- GROSS MONTHLY INCOME -->
         <v-col cols="4">
           <money-input
-            v-model="grossMonthlyIncome"
+            v-model.number="grossMonthlyIncome"
             label="Gross Monthly Income"
           ></money-input>
         </v-col>

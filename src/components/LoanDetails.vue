@@ -17,30 +17,30 @@
           <!-- LOAN AMOUNT -->
           <v-col cols="4">
             <money-input
-              :value="loanAmount"
+              v-model.number="loanAmount"
               label="Loan Amount"
             ></money-input>
           </v-col>
 
           <!-- INTEREST RATE -->
           <v-col cols="4">
-            <percent-input :value="interestRate" label="Interest Rate"></percent-input>
+            <percent-input v-model.number="interestRate" label="Interest Rate"></percent-input>
           </v-col>
 
           <!-- INSURANCE RATE -->
           <v-col cols="4">
-            <percent-input :value="insuranceRate" label="Insurance Rate"></percent-input>
+            <percent-input v-model.number="insuranceRate" label="Insurance Rate"></percent-input>
           </v-col>
 
           <!-- LOAN POINTS -->
           <v-col cols="4">
-            <percent-input :value="loanPoints" label="Loan Points"></percent-input>
+            <percent-input v-model.number="loanPoints" label="Loan Points"></percent-input>
           </v-col>
 
           <!-- TERM YEARS -->
           <v-col cols="4">
             <v-text-field
-              v-model="termYears"
+              v-model.number="termYears"
               label="Term Years"
               type="number"
               outlined

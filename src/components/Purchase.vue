@@ -6,7 +6,7 @@
         <!-- PURCHASE PRICE -->
         <v-col cols="6">
           <money-input
-            v-model="purchasePrice"
+            v-model.number="purchasePrice"
             label="Purchase Price"
           ></money-input>
         </v-col>
@@ -14,7 +14,7 @@
         <!-- CLOSING COSTS -->
         <v-col cols="6">
           <money-input
-            v-model="closingCosts"
+            v-model.number="closingCosts"
             label="Closing Costs"
             :hint="closingCostsEstimate"
           ></money-input>
@@ -32,7 +32,7 @@
           <!-- AFTER REPAIR VALUE -->
           <v-col cols="6">
             <money-input
-              v-model="afterRepairValue"
+              v-model.number="afterRepairValue"
               label="After Repair Value"
               hint="Property value after all repairs have been completed"
             ></money-input>
@@ -41,7 +41,7 @@
           <!-- REPAIR COSTS -->
           <v-col cols="6">
             <money-input
-              v-model="repairCosts"
+              v-model.number="repairCosts"
               label="Repair Costs"
             ></money-input>
           </v-col>
