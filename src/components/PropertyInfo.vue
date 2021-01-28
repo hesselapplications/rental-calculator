@@ -6,7 +6,7 @@
         <!-- ADDRESS -->
         <v-col cols="6">
           <v-text-field
-            v-model="address"
+            v-model.trim="address"
             label="Address"
             outlined
           ></v-text-field>
@@ -14,7 +14,11 @@
 
         <!-- DESCRIPTION -->
         <v-col cols="6">
-          <v-text-field v-model="description" label="Description" outlined></v-text-field>
+          <v-text-field
+            v-model.trim="description"
+            label="Description"
+            outlined
+          ></v-text-field>
         </v-col>
       </v-row>
     </v-card-text>
@@ -22,22 +26,24 @@
 </template>
 
 <script>
-import { sync } from 'vuex-pathify'
+import { sync } from "vuex-pathify";
 
 export default {
   computed: {
-    ...sync([
-      "address",
-      "description"
-    ]),
+    ...sync(["address", "description"]),
     title() {
-      return `${this.address} - ${this.description}`;
-    }
+      return [this.address, this.description]
+        .filter(value => value != null && value != "")
+        .join(" - ")
+    },
   },
   watch: {
-    title(title) {
-      document.title = title
-    }
-  }
+    title: {
+      immediate: true,
+      handler(title) {
+        document.title = title;
+      },
+    },
+  },
 };
 </script>
