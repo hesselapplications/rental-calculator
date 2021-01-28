@@ -24,7 +24,9 @@ export default {
     MoneyInput
   },
   computed: {
-    ...sync("income@*"),
+    ...sync([
+      "grossMonthlyIncome"
+    ]),
   }
 };
 </script>

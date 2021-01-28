@@ -18,6 +18,7 @@ import Purchase from "@/components/Purchase.vue";
 import LoanDetails from "@/components/LoanDetails.vue";
 import Income from "@/components/Income.vue";
 import Expenses from "@/components/Expenses.vue";
+import _ from "lodash";
 
 export default {
   components: {
@@ -26,6 +27,36 @@ export default {
     LoanDetails,
     Income,
     Expenses,
+  },
+  created() {
+    this.loadQueryParamsIntoStore();
+    this.syncQueryParamsWithStore();
+  },
+  methods: {
+    loadQueryParamsIntoStore() {
+      for (const key in this.$route.query) {
+        var value = this.$route.query[key];
+        if (!isNaN(value)) {
+          value = _.toFinite(value);
+        } else if (value == "true" || value == "false") {
+          value = value == "true";
+        }
+
+        this.$store.set(key, value);
+      }
+    },
+    syncQueryParamsWithStore() {
+      this.$store.subscribe((mutation) => {
+        const key = mutation.type.replace("SET_", "").toLowerCase();
+        const value = mutation.payload;
+
+        var query = _.cloneDeep(this.$route.query);
+        if (query[key] != value.toString()) {
+          query[key] = value;
+          this.$router.replace({ query: query });
+        }
+      });
+    },
   },
 };
 </script>

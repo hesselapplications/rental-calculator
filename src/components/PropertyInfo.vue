@@ -26,7 +26,10 @@ import { sync } from 'vuex-pathify'
 
 export default {
   computed: {
-    ...sync("propertyInfo@*"),
+    ...sync([
+      "address",
+      "description"
+    ]),
     title() {
       return `${this.address} - ${this.description}`;
     }

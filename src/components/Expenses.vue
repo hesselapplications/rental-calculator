@@ -102,7 +102,20 @@ export default {
     PercentInput,
   },
   computed: {
-    ...sync("expenses@*"),
+    ...sync([
+      "annualPropertyTaxes",
+      "monthlyPropertyInsurance",
+      "repairsAndMaintenance",
+      "vacancyRate",
+      "capitalExpendatures",
+      "managementFees",
+      "electricity",
+      "gas",
+      "waterAndSewer",
+      "garbage",
+      "hoa",
+      "other"
+    ]),
   }
 };
 </script>

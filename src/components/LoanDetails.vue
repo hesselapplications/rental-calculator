@@ -63,7 +63,14 @@ export default {
     PercentInput,
   },
   computed: {
-    ...sync("loanDetails@*"),
+    ...sync([
+      "cashPurchase",
+      "loanAmount",
+      "interestRate",
+      "insuranceRate",
+      "loanPoints",
+      "termYears"
+    ]),
   }
 };
 </script>

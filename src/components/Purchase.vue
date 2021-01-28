@@ -60,7 +60,13 @@ export default {
     MoneyInput,
   },
   computed: {
-    ...sync("purchase@*"),
+    ...sync([
+      "purchasePrice",
+      "closingCosts",
+      "rehabbing",
+      "afterRepairValue",
+      "repairCosts"
+    ]),
     closingCostsEstimate() {
       return `Estimate: $${this.purchasePrice * 0.01} to $${
         this.purchasePrice * 0.02
