@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import pathify from 'vuex-pathify'
 import { make } from 'vuex-pathify'
+import formulajs from "@formulajs/formulajs"
 
 Vue.use(Vuex)
 
@@ -55,6 +56,28 @@ const actions = {
 // GETTERS
 const getters = {
   ...make.getters(state),
+  downPaymentAmount: state => {
+    return state.purchasePrice - state.loanAmount;
+  },
+  downPaymentPercentage: (state, getters) => {
+    const percentage = (getters.downPaymentAmount / state.purchasePrice) * 100
+    return percentage.toFixed(2)
+  },
+  totalInterestPaid: state => {
+    const rate = state.interestRate / 100 / 12;
+    const numPeriods = state.termYears * 12;
+    const presentValue = state.loanAmount;
+    const startPeriod = 1;
+    const endPeriod = numPeriods;
+    const type = 0;
+    return formulajs.CUMIPMT(rate, numPeriods, presentValue, startPeriod, endPeriod, type).toFixed(2) * -1;
+  },
+  mortgageTotal: (state, getters) => {
+    return state.loanAmount + getters.totalInterestPaid;
+  },
+  totalCostToClose: (state, getters) => {
+    return getters.downPaymentAmount + state.closingCosts + (state.loanAmount * (state.loanPoints / 100));
+  }
 }
 
 export default new Vuex.Store({

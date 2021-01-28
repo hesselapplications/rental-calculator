@@ -6,12 +6,12 @@
     <v-card-text>
       <v-row dense>
         <!-- CASH PURCHASE -->
-        <v-col cols="12">
+        <!-- <v-col cols="12">
           <v-checkbox
             v-model="cashPurchase"
             label="Cash Purchase?"
           ></v-checkbox>
-        </v-col>
+        </v-col> -->
 
         <template v-if="!cashPurchase">
           <!-- LOAN AMOUNT -->

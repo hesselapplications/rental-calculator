@@ -8,6 +8,9 @@
         <income class="mb-4" />
         <expenses />
       </v-col>
+      <v-col xl="4" lg="6" md="8" sm="10" cols="12">
+        <results class="mt-4"></results>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -18,6 +21,7 @@ import Purchase from "@/components/Purchase.vue";
 import LoanDetails from "@/components/LoanDetails.vue";
 import Income from "@/components/Income.vue";
 import Expenses from "@/components/Expenses.vue";
+import Results from "@/components/Results.vue";
 import _ from "lodash";
 
 export default {
@@ -27,6 +31,7 @@ export default {
     LoanDetails,
     Income,
     Expenses,
+    Results
   },
   created() {
     this.loadQueryParamsIntoStore();
