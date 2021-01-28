@@ -60,24 +60,72 @@ const getters = {
     return state.purchasePrice - state.loanAmount;
   },
   downPaymentPercentage: (state, getters) => {
-    const percentage = (getters.downPaymentAmount / state.purchasePrice) * 100
-    return percentage.toFixed(2)
+    return getters.downPaymentAmount / state.purchasePrice
   },
   totalInterestPaid: state => {
-    const rate = state.interestRate / 100 / 12;
+    const rate = state.interestRate / 12;
     const numPeriods = state.termYears * 12;
     const presentValue = state.loanAmount;
     const startPeriod = 1;
     const endPeriod = numPeriods;
     const type = 0;
-    return formulajs.CUMIPMT(rate, numPeriods, presentValue, startPeriod, endPeriod, type).toFixed(2) * -1;
+    return formulajs.CUMIPMT(rate, numPeriods, presentValue, startPeriod, endPeriod, type) * -1;
   },
   mortgageTotal: (state, getters) => {
     return state.loanAmount + getters.totalInterestPaid;
   },
   totalCostToClose: (state, getters) => {
-    return getters.downPaymentAmount + state.closingCosts + (state.loanAmount * (state.loanPoints / 100));
-  }
+    return getters.downPaymentAmount + state.closingCosts + (state.loanAmount * state.loanPoints);
+  },
+  monthlyPrincipalAndInterest: state => {
+    const rate = state.interestRate / 12;
+    const numPeriods = state.termYears * 12;
+    const presentValue = state.loanAmount;
+    return formulajs.PMT(rate, numPeriods, presentValue) * -1;
+  },
+  monthlyMortgageInsurance: state => {
+    return (state.loanAmount * state.insuranceRate) / 12;
+  },
+  monthlyPropertyTaxes: state => {
+    return state.annualPropertyTaxes / 12;
+  },
+  monthlyVacancy: state => {
+    return state.grossMonthlyIncome * state.vacancyRate;
+  },
+  monthlyCapitalExpendatures: state => {
+    return state.grossMonthlyIncome * state.capitalExpendatures;
+  },
+  monthlyMaintenance: state => {
+    return state.grossMonthlyIncome * state.repairsAndMaintenance;
+  },
+  totalMonthlyExpenses: (state, getters) => {
+    return getters.monthlyPrincipalAndInterest
+      + getters.monthlyMortgageInsurance
+      + getters.monthlyPropertyTaxes
+      + getters.monthlyVacancy
+      + getters.monthlyCapitalExpendatures
+      + getters.monthlyMaintenance
+      + state.monthlyPropertyInsurance
+      + state.managementFees
+      + state.electricity
+      + state.gas
+      + state.waterAndSewer
+      + state.hoa
+      + state.garbage
+      + state.other;
+  },
+  monthlyCashFlow: (state, getters) => {
+    return state.grossMonthlyIncome - getters.totalMonthlyExpenses;
+  },
+  annualCashFlow: (state, getters) => {
+    return getters.monthlyCashFlow * 12;
+  },
+  capRate: (state, getters) => {
+    return getters.annualCashFlow / state.purchasePrice;
+  },
+  cashOnCashReturn: (state, getters) => {
+    return getters.annualCashFlow / getters.totalCostToClose;
+  },
 }
 
 export default new Vuex.Store({
