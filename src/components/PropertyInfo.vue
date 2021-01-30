@@ -20,6 +20,16 @@
             outlined
           ></v-text-field>
         </v-col>
+
+        <!-- SQUARE FEET -->
+        <v-col cols="6">
+          <v-text-field
+            v-model.number="squareFeet"
+            label="Square Feet"
+            type="number"
+            outlined
+          ></v-text-field>
+        </v-col>
       </v-row>
     </v-card-text>
   </v-card>
@@ -30,7 +40,7 @@ import { sync } from "vuex-pathify";
 
 export default {
   computed: {
-    ...sync(["address", "description"]),
+    ...sync(["address", "description", "squareFeet"]),
     title() {
       return [this.address, this.description]
         .filter(value => value != null && value != "")

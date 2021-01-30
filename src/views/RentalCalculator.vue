@@ -8,7 +8,7 @@
         <income class="mb-4" />
         <expenses />
       </v-col>
-      <v-col xl="4" lg="6" md="8" sm="10" cols="12">
+      <v-col lg="3" md="4" cols="12">
         <results class="mt-4"></results>
       </v-col>
     </v-row>

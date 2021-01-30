@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="primary--text">Results</v-card-title>
+    <v-card-title class="primary--text">Loan Details</v-card-title>
     <v-card-text>
       <div>Down Payment Amount: {{ formatUSD(downPaymentAmount) }}</div>
       <div>
@@ -9,42 +9,37 @@
       <div>Total Interest Paid: {{ formatUSD(totalInterestPaid) }}</div>
       <div>Mortgage Total: {{ formatUSD(mortgageTotal) }}</div>
       <div>Total Cost To Close: {{ formatUSD(totalCostToClose) }}</div>
-      
-      <v-divider class="my-2"></v-divider>
+    </v-card-text>
 
-      <div>
-        Principal + Interest: {{ formatUSD(monthlyPrincipalAndInterest) }} /
-        month
-      </div>
-      <div>
-        Mortgage Insurance: {{ formatUSD(monthlyMortgageInsurance) }} / month
-      </div>
-      <div>Property Taxes: {{ formatUSD(monthlyPropertyTaxes) }} / month</div>
-      <div>Vacancy: {{ formatUSD(monthlyVacancy) }} / month</div>
-      <div>
-        Capital Expendatures: {{ formatUSD(monthlyCapitalExpendatures) }} /
-        month
-      </div>
-      <div>
-        Repairs and Maintenance: {{ formatUSD(monthlyMaintenance) }} / month
-      </div>
-      <div class="font-weight-bold">
-        Total: {{ formatUSD(totalMonthlyExpenses) }} / month
-      </div>
+    <v-divider></v-divider>
 
-      <v-divider class="my-2"></v-divider>
-
+    <v-card-title class="primary--text">Returns</v-card-title>
+    <v-card-text>
       <div>Cash Flow: {{ formatUSD(monthlyCashFlow) }}</div>
       <div>Cap Rate: {{ formatPercentage(capRate) }}</div>
       <div>Cash On Cash Return: {{ formatPercentage(cashOnCashReturn) }}</div>
+      <div>
+        Cost Per Square Foot: {{ formatUSD(costPerSquareFoot) }} / sq ft
+      </div>
+    </v-card-text>
+
+    <v-divider></v-divider>
+
+    <v-card-title class="red--text">Monthly Expenses</v-card-title>
+    <v-card-text>
+      <expenses-chart />
     </v-card-text>
   </v-card>
 </template>
 
 <script>
+import ExpensesChart from "@/components/ExpensesChart.vue";
+import format from "@/mixins/format.js";
 import { mapGetters } from "vuex";
 
 export default {
+  components: { ExpensesChart },
+  mixins: [format],
   computed: {
     ...mapGetters([
       "downPaymentAmount",
@@ -52,22 +47,10 @@ export default {
       "totalInterestPaid",
       "mortgageTotal",
       "totalCostToClose",
-      "monthlyPrincipalAndInterest",
-      "monthlyMortgageInsurance",
-      "monthlyPropertyTaxes",
-      "monthlyVacancy",
-      "monthlyCapitalExpendatures",
-      "monthlyMaintenance",
-      "electricity",
-      "gas",
-      "waterAndSewer",
-      "garbage",
-      "hoa",
-      "other",
-      "totalMonthlyExpenses",
       "monthlyCashFlow",
       "capRate",
-      "cashOnCashReturn"
+      "cashOnCashReturn",
+      "costPerSquareFoot",
     ]),
   },
   methods: {

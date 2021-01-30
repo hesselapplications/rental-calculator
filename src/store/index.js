@@ -11,6 +11,7 @@ const state = {
   // PROPERTY INFO
   address: null,
   description: null,
+  squareFeet: null,
 
   // PURCHASE
   purchasePrice: null,
@@ -126,6 +127,9 @@ const getters = {
   cashOnCashReturn: (state, getters) => {
     return getters.annualCashFlow / getters.totalCostToClose;
   },
+  costPerSquareFoot: state => {
+    return state.purchasePrice / state.squareFeet;
+  }
 }
 
 export default new Vuex.Store({
