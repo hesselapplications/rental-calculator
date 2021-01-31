@@ -8,7 +8,11 @@ import format from "@/mixins/format.js";
 export default {
   mixins: [format],
   props: {
-    expenses: Array
+    expenses: Array,
+    color: {
+      type: String,
+      default: "#CCCCCC"
+    }
   },
   computed: {
     sortedExpenses() {
@@ -30,7 +34,7 @@ export default {
         theme: {
           monochrome: {
             enabled: true,
-            color: "#FF6859",
+            color: this.color,
             shadeIntensity: 1,
           },
         },

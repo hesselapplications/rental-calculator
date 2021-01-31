@@ -1,5 +1,5 @@
 <template>
-  <expenses-base-chart :expenses="expenses"/>
+  <expenses-base-chart :expenses="expenses" color="#7d4e57"/>
 </template>
 
 <script>
