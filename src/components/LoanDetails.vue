@@ -9,12 +9,12 @@
         </v-col> -->
 
     <template v-if="!cashPurchase">
-      <!-- LOAN AMOUNT -->
+      <!-- DOWN PAYMENT -->
       <v-col lg="2" md="4" cols="6">
-        <money-input
-          v-model.number="loanAmount"
-          label="Loan Amount"
-        ></money-input>
+        <percent-input
+          v-model.number="downPaymentPercentage"
+          label="Down Payment"
+        ></percent-input>
       </v-col>
 
       <!-- INTEREST RATE -->
@@ -55,19 +55,17 @@
 </template>
 
 <script>
-import MoneyInput from "@/components/inputs/MoneyInput.vue";
 import PercentInput from "@/components/inputs/PercentInput.vue";
 import { sync } from "vuex-pathify";
 
 export default {
   components: {
-    MoneyInput,
     PercentInput,
   },
   computed: {
     ...sync([
       "cashPurchase",
-      "loanAmount",
+      "downPaymentPercentage",
       "interestRate",
       "insuranceRate",
       "loanPoints",

@@ -24,6 +24,7 @@ const state = {
 
   // LOAN DETAILS
   cashPurchase: false,
+  downPaymentPercentage: null,
   loanAmount: null,
   interestRate: null,
   insuranceRate: null,
@@ -60,34 +61,34 @@ const actions = {
 const getters = {
   ...make.getters(state),
   downPaymentAmount: state => {
-    return state.purchasePrice - state.loanAmount;
+    return state.purchasePrice * state.downPaymentPercentage;
   },
-  downPaymentPercentage: (state, getters) => {
-    return getters.downPaymentAmount / state.purchasePrice
+  loanAmount: (state, getters) => {
+    return state.purchasePrice - getters.downPaymentAmount;
   },
-  totalInterestPaid: state => {
+  totalInterestPaid: (state, getters) => {
     const rate = state.interestRate / 12;
     const numPeriods = state.termYears * 12;
-    const presentValue = state.loanAmount;
+    const presentValue = getters.loanAmount;
     const startPeriod = 1;
     const endPeriod = numPeriods;
     const type = 0;
     return formulajs.CUMIPMT(rate, numPeriods, presentValue, startPeriod, endPeriod, type) * -1;
   },
   mortgageTotal: (state, getters) => {
-    return state.loanAmount + getters.totalInterestPaid;
+    return getters.loanAmount + getters.totalInterestPaid;
   },
   totalCostToClose: (state, getters) => {
-    return getters.downPaymentAmount + state.closingCosts + (state.loanAmount * state.loanPoints);
+    return getters.downPaymentAmount + state.closingCosts + (getters.loanAmount * state.loanPoints);
   },
-  monthlyPrincipalAndInterest: state => {
+  monthlyPrincipalAndInterest: (state, getters) => {
     const rate = state.interestRate / 12;
     const numPeriods = state.termYears * 12;
-    const presentValue = state.loanAmount;
+    const presentValue = getters.loanAmount;
     return formulajs.PMT(rate, numPeriods, presentValue) * -1;
   },
-  monthlyMortgageInsurance: state => {
-    return (state.loanAmount * state.insuranceRate) / 12;
+  monthlyMortgageInsurance: (state, getters) => {
+    return (getters.loanAmount * state.insuranceRate) / 12;
   },
   monthlyPropertyTaxes: state => {
     return state.annualPropertyTaxes / 12;
