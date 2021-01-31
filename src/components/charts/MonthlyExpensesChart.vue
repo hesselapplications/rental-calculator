@@ -1,13 +1,15 @@
 <template>
-  <apexchart type="donut" :options="options" :series="series"></apexchart>
+  <expenses-base-chart :expenses="expenses"/>
 </template>
 
 <script>
-import format from "@/mixins/format.js";
+import ExpensesBaseChart from "@/components/charts/ExpensesBaseChart.vue";
 import { mapGetters } from "vuex";
 
 export default {
-  mixins: [format],
+  components: {
+    ExpensesBaseChart
+  },
   computed: {
     ...mapGetters([
       "monthlyPrincipalAndInterest",
@@ -24,10 +26,9 @@ export default {
       "garbage",
       "hoa",
       "other",
-      "totalMonthlyExpenses",
     ]),
     expenses() {
-      const expenses = [
+      return [
         {
           label: "Principal & Interest",
           value: this.monthlyPrincipalAndInterest,
@@ -85,72 +86,6 @@ export default {
           value: this.other,
         },
       ];
-
-      return expenses
-        .filter((expense) => expense.value != null && expense.value != 0)
-        .sort((a, b) => b.value - a.value);
-    },
-    series() {
-      return this.expenses.map((expense) => expense.value);
-    },
-    options() {
-      return {
-        dataLabels: {
-          enabled: false,
-        },
-        tooltip: {
-          enabled: false,
-        },
-        theme: {
-          monochrome: {
-            enabled: true,
-            color: "#FF5252",
-            shadeIntensity: 1,
-          },
-        },
-        legend: {
-          show: false,
-        },
-        chart: {
-          type: "donut",
-        },
-        states: {
-          active: {
-            filter: {
-              type: "light",
-            },
-          },
-        },
-        labels: this.expenses.map((expense) => expense.label),
-        plotOptions: {
-          pie: {
-            expandOnClick: false,
-            donut: {
-              labels: {
-                show: true,
-                name: {
-                  color: "#000",
-                },
-                value: {
-                  fontWeight: 600,
-                  formatter: this.formatUSD,
-                },
-                total: {
-                  show: true,
-                  color: "#000",
-                  formatter: (w) => {
-                    const total = w.globals.seriesTotals.reduce(
-                      (a, b) => a + b,
-                      0
-                    );
-                    return this.formatUSD(total);
-                  },
-                },
-              },
-            },
-          },
-        },
-      };
     },
   },
 };

@@ -78,8 +78,11 @@ const getters = {
   mortgageTotal: (state, getters) => {
     return getters.loanAmount + getters.totalInterestPaid;
   },
+  loanPointsAmount: (state, getters) => {
+    return getters.loanAmount * state.loanPoints;
+  },
   totalCostToClose: (state, getters) => {
-    return getters.downPaymentAmount + state.closingCosts + (getters.loanAmount * state.loanPoints);
+    return getters.downPaymentAmount + state.closingCosts + getters.loanPointsAmount;
   },
   monthlyPrincipalAndInterest: (state, getters) => {
     const rate = state.interestRate / 12;

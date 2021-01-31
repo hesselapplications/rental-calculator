@@ -1,9 +1,9 @@
 <template>
-  <v-col lg="4" md="6" cols="12">
+  <v-col class="text-center" v-bind="$attrs" v-on="$listeners">
     <div class="overline grey--text">{{ label }}</div>
-    <h4 class="font-weight-bold">
+    <div class="font-weight-bold d-flex justify-center align-center">
       <slot></slot>
-    </h4>
+    </div>
   </v-col>
 </template>
 
