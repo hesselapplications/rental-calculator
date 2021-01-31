@@ -14,7 +14,7 @@
               class="mx-16 my-4"
               :src="require('../assets/sweet-home.svg')"
             ></v-img>
-            <h1 class="text-center white--text">{{ address }}</h1>
+            <h1 class="text-center white--text">{{ address || 'Rental Calculator' }}</h1>
             <h3 class="text-center white--text">{{ description }}</h3>
           </v-col>
         </v-row>
