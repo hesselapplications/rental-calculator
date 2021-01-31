@@ -75,9 +75,6 @@ const getters = {
     const type = 0;
     return formulajs.CUMIPMT(rate, numPeriods, presentValue, startPeriod, endPeriod, type) * -1;
   },
-  mortgageTotal: (state, getters) => {
-    return getters.loanAmount + getters.totalInterestPaid;
-  },
   loanPointsAmount: (state, getters) => {
     return getters.loanAmount * state.loanPoints;
   },
@@ -90,7 +87,7 @@ const getters = {
     const presentValue = getters.loanAmount;
     return formulajs.PMT(rate, numPeriods, presentValue) * -1;
   },
-  monthlyMortgageInsurance: (state, getters) => {
+  monthlyLoanInsurance: (state, getters) => {
     return (getters.loanAmount * state.insuranceRate) / 12;
   },
   monthlyPropertyTaxes: state => {
@@ -107,7 +104,7 @@ const getters = {
   },
   totalMonthlyExpenses: (state, getters) => {
     return getters.monthlyPrincipalAndInterest
-      + getters.monthlyMortgageInsurance
+      + getters.monthlyLoanInsurance
       + getters.monthlyPropertyTaxes
       + getters.monthlyVacancy
       + getters.monthlyCapitalExpendatures

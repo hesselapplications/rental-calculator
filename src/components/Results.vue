@@ -49,11 +49,6 @@ export default {
   mixins: [format],
   computed: {
     ...mapGetters([
-      "downPaymentAmount",
-      "downPaymentPercentage",
-      "totalInterestPaid",
-      "mortgageTotal",
-      "totalCostToClose",
       "monthlyCashFlow",
       "capRate",
       "cashOnCashReturn",

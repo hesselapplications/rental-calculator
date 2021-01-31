@@ -13,7 +13,7 @@ export default {
   computed: {
     ...mapGetters([
       "monthlyPrincipalAndInterest",
-      "monthlyMortgageInsurance",
+      "monthlyLoanInsurance",
       "monthlyPropertyTaxes",
       "monthlyVacancy",
       "monthlyCapitalExpendatures",
@@ -34,8 +34,8 @@ export default {
           value: this.monthlyPrincipalAndInterest,
         },
         {
-          label: "Mortgage Insurance",
-          value: this.monthlyMortgageInsurance,
+          label: "Loan Insurance",
+          value: this.monthlyLoanInsurance,
         },
         {
           label: "Property Taxes",
