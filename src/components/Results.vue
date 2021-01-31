@@ -1,44 +1,50 @@
 <template>
-  <v-card>
-    <v-card-title class="primary--text">Loan Details</v-card-title>
-    <v-card-text>
-      <div>Down Payment Amount: {{ formatUSD(downPaymentAmount) }}</div>
-      <div>
-        Down Payment Percentage: {{ formatPercentage(downPaymentPercentage) }}
-      </div>
-      <div>Total Interest Paid: {{ formatUSD(totalInterestPaid) }}</div>
-      <div>Mortgage Total: {{ formatUSD(mortgageTotal) }}</div>
-      <div>Total Cost To Close: {{ formatUSD(totalCostToClose) }}</div>
-    </v-card-text>
+  <v-row dense>
+    <v-col md="8" cols="12">
+      <v-row>
+        <!-- LOAN DETAILS -->
+        <result label="Down Payment Amount">{{
+          formatUSD(downPaymentAmount)
+        }}</result>
+        <result label="Down Payment Percentage">{{
+          formatPercentage(downPaymentPercentage)
+        }}</result>
+        <result label="Total Interest Paid">{{
+          formatUSD(totalInterestPaid)
+        }}</result>
+        <result label="Mortgage Total">{{ formatUSD(mortgageTotal) }}</result>
+        <result label="Total Cost To Close">{{
+          formatUSD(totalCostToClose)
+        }}</result>
 
-    <v-divider></v-divider>
+        <!-- RETURNS -->
+        <result label="Cash Flow">{{ formatUSD(monthlyCashFlow) }}</result>
+        <result label="Cap Rate">{{ formatPercentage(capRate) }}</result>
+        <result label="Cash On Cash Return">{{
+          formatPercentage(cashOnCashReturn)
+        }}</result>
+        <result label="Cost Per Square Foot">{{
+          formatUSD(costPerSquareFoot)
+        }}</result>
+      </v-row>
+    </v-col>
 
-    <v-card-title class="primary--text">Returns</v-card-title>
-    <v-card-text>
-      <div>Cash Flow: {{ formatUSD(monthlyCashFlow) }}</div>
-      <div>Cap Rate: {{ formatPercentage(capRate) }}</div>
-      <div>Cash On Cash Return: {{ formatPercentage(cashOnCashReturn) }}</div>
-      <div>
-        Cost Per Square Foot: {{ formatUSD(costPerSquareFoot) }} / sq ft
-      </div>
-    </v-card-text>
-
-    <v-divider></v-divider>
-
-    <v-card-title class="red--text">Monthly Expenses</v-card-title>
-    <v-card-text>
+    <!-- MONTHLY EXPENSES -->
+    <v-col md="4" cols="12">
+      <div class="overline grey--text text-center">Monthly Expenses</div>
       <expenses-chart />
-    </v-card-text>
-  </v-card>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
 import ExpensesChart from "@/components/ExpensesChart.vue";
+import Result from "@/components/Result.vue";
 import format from "@/mixins/format.js";
 import { mapGetters } from "vuex";
 
 export default {
-  components: { ExpensesChart },
+  components: { ExpensesChart, Result },
   mixins: [format],
   computed: {
     ...mapGetters([

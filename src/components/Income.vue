@@ -1,32 +1,25 @@
 <template>
-  <v-card>
-    <v-card-title class="primary--text">Income</v-card-title>
-    <v-card-text>
-      <v-row dense>
-        <!-- GROSS MONTHLY INCOME -->
-        <v-col cols="4">
-          <money-input
-            v-model.number="grossMonthlyIncome"
-            label="Gross Monthly Income"
-          ></money-input>
-        </v-col>
-      </v-row>
-    </v-card-text>
-  </v-card>
+  <v-row dense>
+    <!-- GROSS MONTHLY INCOME -->
+    <v-col lg="2" md="4" cols="6">
+      <money-input
+        v-model.number="grossMonthlyIncome"
+        label="Gross Monthly Income"
+      ></money-input>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
 import MoneyInput from "@/components/inputs/MoneyInput.vue";
-import { sync } from 'vuex-pathify'
+import { sync } from "vuex-pathify";
 
 export default {
   components: {
-    MoneyInput
+    MoneyInput,
   },
   computed: {
-    ...sync([
-      "grossMonthlyIncome"
-    ]),
-  }
+    ...sync(["grossMonthlyIncome"]),
+  },
 };
 </script>

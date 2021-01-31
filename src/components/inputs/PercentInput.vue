@@ -3,7 +3,7 @@
     v-model="model"
     v-bind="$attrs"
     v-on="$listeners"
-    outlined
+    filled
     suffix="%"
     type="number"
   ></v-text-field>

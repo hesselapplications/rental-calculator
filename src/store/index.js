@@ -8,6 +8,8 @@ Vue.use(Vuex)
 
 // STATE
 const state = {
+  currentStep: 1,
+
   // PROPERTY INFO
   address: null,
   description: null,

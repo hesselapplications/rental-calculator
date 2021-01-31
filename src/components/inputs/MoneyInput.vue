@@ -2,7 +2,7 @@
   <v-text-field
     v-bind="$attrs"
     v-on="$listeners"
-    outlined
+    filled
     prefix="$"
     type="number"
   ></v-text-field>
