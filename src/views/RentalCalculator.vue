@@ -14,7 +14,9 @@
               class="mx-16 my-4"
               :src="require('../assets/sweet-home.svg')"
             ></v-img>
-            <h1 class="text-center white--text">{{ address || 'Rental Calculator' }}</h1>
+            <h1 class="text-center white--text">
+              {{ address || "Rental Calculator" }}
+            </h1>
             <h3 class="text-center white--text">{{ description }}</h3>
           </v-col>
         </v-row>
@@ -45,26 +47,28 @@
               <!-- COMPONENT -->
               <component class="pt-2" :is="components[index]" />
 
-              <!-- NEXT -->
-              <v-btn
-                v-if="index + 1 < steps.length"
-                depressed
-                color="primary"
-                @click="currentStep++"
-              >
-                Next
-              </v-btn>
+              <div class="mb-2">
+                <!-- NEXT -->
+                <v-btn
+                  v-if="index + 1 < steps.length"
+                  depressed
+                  color="primary"
+                  @click="currentStep++"
+                >
+                  Next
+                </v-btn>
 
-              <!-- BACK -->
-              <v-btn
-                v-if="index > 0 && index + 1 != steps.length"
-                text
-                color="grey"
-                class="ml-2"
-                @click="currentStep--"
-              >
-                Back
-              </v-btn>
+                <!-- BACK -->
+                <v-btn
+                  v-if="index > 0 && index + 1 != steps.length"
+                  text
+                  color="grey"
+                  class="ml-2"
+                  @click="currentStep--"
+                >
+                  Back
+                </v-btn>
+              </div>
             </v-stepper-content>
           </template>
         </v-stepper>
