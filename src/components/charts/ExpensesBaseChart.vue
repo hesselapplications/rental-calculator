@@ -1,5 +1,5 @@
 <template>
-  <apexchart type="donut" :options="options" :series="series"></apexchart>
+  <apexchart :options="options" :series="series"></apexchart>
 </template>
 
 <script>
@@ -43,6 +43,7 @@ export default {
         },
         chart: {
           type: "donut",
+          fontFamily: "Roboto"
         },
         states: {
           active: {

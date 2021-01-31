@@ -10,7 +10,7 @@
         md="6"
         cols="12"
       >
-        <h4>{{ value }}</h4>
+        <h2>{{ value }}</h2>
       </result>
     </v-row>
 
