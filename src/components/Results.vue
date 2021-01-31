@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mr-10">
     <v-row>
       <!-- SIMPLE RESULTS -->
       <result
