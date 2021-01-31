@@ -74,6 +74,7 @@
         </v-stepper>
       </v-col>
     </v-row>
+    <share v-show="currentStep == steps.length" :title="`${address} - ${description}`"/>
   </v-container>
 </template>
 
@@ -84,6 +85,7 @@ import LoanDetails from "@/components/LoanDetails.vue";
 import Income from "@/components/Income.vue";
 import Expenses from "@/components/Expenses.vue";
 import Results from "@/components/Results.vue";
+import Share from "@/components/Share.vue";
 import { sync, get } from "vuex-pathify";
 import _ from "lodash";
 
@@ -95,6 +97,7 @@ export default {
     Income,
     Expenses,
     Results,
+    Share
   },
   data() {
     return {
