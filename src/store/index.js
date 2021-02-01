@@ -13,40 +13,40 @@ const state = {
   // PROPERTY INFO
   address: null,
   description: null,
-  squareFeet: null,
+  squareFeet: 0,
 
   // PURCHASE
-  purchasePrice: null,
-  closingCosts: null,
+  purchasePrice: 0,
+  closingCosts: 0,
   rehabbing: false,
-  afterRepairValue: null,
-  repairCosts: null,
+  afterRepairValue: 0,
+  repairCosts: 0,
 
   // LOAN DETAILS
   cashPurchase: false,
-  downPaymentPercentage: null,
-  loanAmount: null,
-  interestRate: null,
-  insuranceRate: null,
-  loanPoints: null,
-  termYears: null,
+  downPaymentPercentage: 0,
+  loanAmount: 0,
+  interestRate: 0,
+  insuranceRate: 0,
+  loanPoints: 0,
+  termYears: 30,
 
   // INCOME
-  grossMonthlyIncome: null,
+  grossMonthlyIncome: 0,
 
   // EXPENSES
-  annualPropertyTaxes: null,
-  monthlyPropertyInsurance: null,
-  repairsAndMaintenance: null,
-  vacancyRate: null,
-  capitalExpendatures: null,
-  managementFees: null,
-  electricity: null,
-  gas: null,
-  waterAndSewer: null,
-  garbage: null,
-  hoa: null,
-  other: null,
+  annualPropertyTaxes: 0,
+  monthlyPropertyInsurance: 0,
+  repairsAndMaintenance: 0,
+  vacancyRate: 0,
+  capitalExpendatures: 0,
+  managementFees: 0,
+  electricity: 0,
+  gas: 0,
+  waterAndSewer: 0,
+  garbage: 0,
+  hoa: 0,
+  other: 0,
 }
 
 // MUTATIONS
