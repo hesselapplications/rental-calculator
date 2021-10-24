@@ -5,11 +5,11 @@
       <v-text-field v-model.trim="address" label="Address" filled></v-text-field>
     </v-col>
 
-    <!-- DESCRIPTION -->
+    <!-- NOTES -->
     <v-col lg="5" md="6" cols="12">
       <v-text-field
-        v-model.trim="description"
-        label="Description"
+        v-model.trim="notes"
+        label="Notes"
         filled
       ></v-text-field>
     </v-col>
@@ -31,9 +31,9 @@ import { sync } from "vuex-pathify";
 
 export default {
   computed: {
-    ...sync(["address", "description", "squareFeet"]),
+    ...sync(["address", "notes", "squareFeet"]),
     title() {
-      return [this.address, this.description]
+      return [this.address, this.notes]
         .filter((value) => value != null && value != "")
         .join(" - ");
     },

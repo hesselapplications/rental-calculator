@@ -17,7 +17,7 @@
             <h1 class="text-center white--text">
               {{ address || "Rental Calculator" }}
             </h1>
-            <h3 class="text-center white--text">{{ description }}</h3>
+            <h3 class="text-center white--text">{{ notes }}</h3>
           </v-col>
         </v-row>
       </v-col>
@@ -74,7 +74,7 @@
         </v-stepper>
       </v-col>
     </v-row>
-    <share v-show="currentStep == steps.length" :title="`${address} - ${description}`"/>
+    <share v-show="currentStep == steps.length" :title="`${address} - ${notes}`"/>
   </v-container>
 </template>
 
@@ -121,7 +121,7 @@ export default {
   },
   computed: {
     ...sync(["currentStep"]),
-    ...get(["address", "description"]),
+    ...get(["address", "notes"]),
   },
   created() {
     this.loadQueryParamsIntoStore();

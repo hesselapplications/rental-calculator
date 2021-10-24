@@ -12,7 +12,7 @@ const state = {
 
   // PROPERTY INFO
   address: null,
-  description: null,
+  notes: null,
   squareFeet: 0,
 
   // PURCHASE
