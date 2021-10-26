@@ -28,6 +28,10 @@
         <component :is="chart" />
       </result>
     </v-row>
+
+    <v-divider class="my-16"></v-divider>
+
+    <InvestmentComparisonChart />
   </div>
 </template>
 
@@ -35,6 +39,7 @@
 import MonthlyExpensesChart from "@/components/charts/MonthlyExpensesChart.vue";
 import CashToCloseChart from "@/components/charts/CashToCloseChart.vue";
 import LoanChart from "@/components/charts/LoanChart.vue";
+import InvestmentComparisonChart from "@/components/charts/InvestmentComparisonChart.vue";
 import Result from "@/components/Result.vue";
 import format from "@/mixins/format.js";
 import { mapGetters } from "vuex";
@@ -44,6 +49,7 @@ export default {
     MonthlyExpensesChart,
     CashToCloseChart,
     LoanChart,
+    InvestmentComparisonChart,
     Result,
   },
   mixins: [format],

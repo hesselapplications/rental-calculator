@@ -47,6 +47,11 @@ const state = {
   garbage: 0,
   hoa: 0,
   other: 0,
+
+  // INVESTMENT COMPARISON
+  monthlyStockContribution: 500,
+  annualStockInterest: 0.04,
+  principal: 100000
 }
 
 // MUTATIONS
@@ -132,11 +137,48 @@ const getters = {
   },
   costPerSquareFoot: state => {
     return state.purchasePrice / state.squareFeet;
+  },
+  stockValue: () => (interestRate, monthlyContribution, principal, year) => {
+    const rate = interestRate / 12;
+    const numPeriods = year * 12;
+    return formulajs.FV(rate, numPeriods, -1 * monthlyContribution, -1 * principal);
+  },
+  stockValues: (state, getters) => (interestRate, monthlyContribution, principal) => {
+    var values = [];
+    for (let year = 0; year <= state.termYears; year++) {
+      const value = getters.stockValue(interestRate, monthlyContribution, principal, year);
+      values.push([year, value]);
+    }
+    return values;
+  },
+  stockAndPropertyValue: (state, getters) => (interestRate, monthlyContribution, principal, year) => {
+    monthlyContribution = monthlyContribution + getters.monthlyCashFlow;
+    principal = principal - getters.totalCostToClose;
+    const stockValue = getters.stockValue(interestRate, monthlyContribution, principal, year);
+    const propertyValue = getters.downPaymentAmount + ((getters.loanAmount / state.termYears) * year);
+    return stockValue + propertyValue;
+  },
+  stockAndPropertyValues: (state, getters) => (interestRate, monthlyContribution, principal) => {
+    var values = [];
+    for (let year = 0; year <= state.termYears; year++) {
+      const value = getters.stockAndPropertyValue(interestRate, monthlyContribution, principal, year);
+      values.push([year, value]);
+    }
+    return values;
+  },
+  investmentComparison: (state, getters) => {
+    const interestRate = state.annualStockInterest;
+    const monthlyContribution = state.monthlyStockContribution;
+    const principal = state.principal;
+    return {
+      stockOnly: getters.stockValues(interestRate, monthlyContribution, principal),
+      stockAndProperty: getters.stockAndPropertyValues(interestRate, monthlyContribution, principal)
+    }
   }
 }
 
 export default new Vuex.Store({
-  plugins: [ pathify.plugin ],
+  plugins: [pathify.plugin],
   state,
   mutations,
   actions,
