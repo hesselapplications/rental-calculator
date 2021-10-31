@@ -5,6 +5,18 @@ export default {
                 style: "currency",
                 currency: "USD",
                 minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            });
+
+            return formatter.format(number);
+        },
+        compactFormatUSD(number) {
+            const formatter = new Intl.NumberFormat("en-US", {
+                notation: "compact",
+                style: "currency",
+                currency: "USD",
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2,
             });
 
             return formatter.format(number);

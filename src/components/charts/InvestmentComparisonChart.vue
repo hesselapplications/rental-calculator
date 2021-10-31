@@ -1,18 +1,18 @@
 <template>
   <div>
-    <apexchart :options="options" :series="series"></apexchart>
+    <apexchart :options="options" :series="series" height="400px"></apexchart>
 
     <v-row>
-      <v-col md="4" cols="6">
+      <v-col md="4" cols="8">
         <money-input v-model.number="principal" label="Principal"></money-input>
       </v-col>
-      <v-col md="4" cols="6">
+      <v-col md="4" cols="8">
         <money-input
           v-model.number="monthlyStockContribution"
           label="Monthly Stock Contribution"
         ></money-input>
       </v-col>
-      <v-col md="4" cols="6">
+      <v-col md="4" cols="8">
         <percent-input
           v-model.number="annualStockInterest"
           label="Annual Stock Interest"
@@ -68,7 +68,6 @@ export default {
           },
         },
         chart: {
-          height: 350,
           type: "line",
           stacked: false,
           fontFamily: "Roboto",
@@ -77,6 +76,9 @@ export default {
           },
           animations: {
             enabled: false,
+          },
+          zoom: {
+            enabled: false
           },
         },
         tooltip: {
@@ -89,7 +91,7 @@ export default {
             text: "Value",
           },
           labels: {
-            formatter: this.formatUSD,
+            formatter: this.compactFormatUSD,
           },
           opposite: true,
           tickAmount: 10,
@@ -100,6 +102,10 @@ export default {
           },
           tooltip: {
             enabled: false,
+          },
+          labels: {
+            rotate: 0,
+            hideOverlappingLabels: false
           },
         },
       };
@@ -121,5 +127,13 @@ export default {
   font-weight: 500;
   font-size: 0.75rem;
   text-transform: uppercase;
+}
+
+.apexcharts-xaxis-label {
+  display: none;
+}
+
+.apexcharts-xaxis-label:nth-child(5n + 1) {
+  display: revert;
 }
 </style>
