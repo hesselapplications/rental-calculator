@@ -50,7 +50,7 @@ const state = {
 
   // INVESTMENT COMPARISON
   monthlyStockContribution: 500,
-  annualStockInterest: 0.04,
+  annualStockInterest: 0.08,
   principal: 100000
 }
 
@@ -83,8 +83,12 @@ const getters = {
   loanPointsAmount: (state, getters) => {
     return getters.loanAmount * state.loanPoints;
   },
-  totalCostToClose: (state, getters) => {
-    return getters.downPaymentAmount + state.closingCosts + getters.loanPointsAmount;
+  upfrontCost: (state, getters) => {
+    var upfrontCost = getters.downPaymentAmount + state.closingCosts + getters.loanPointsAmount;
+    if (state.rehabbing) {
+      upfrontCost += state.repairCosts;
+    }
+    return upfrontCost;
   },
   monthlyPrincipalAndInterest: (state, getters) => {
     const rate = state.interestRate / 12;
@@ -133,7 +137,7 @@ const getters = {
     return getters.annualCashFlow / state.purchasePrice;
   },
   cashOnCashReturn: (state, getters) => {
-    return getters.annualCashFlow / getters.totalCostToClose;
+    return getters.annualCashFlow / getters.upfrontCost;
   },
   costPerSquareFoot: state => {
     return state.purchasePrice / state.squareFeet;
@@ -153,10 +157,11 @@ const getters = {
   },
   stockAndPropertyValue: (state, getters) => (interestRate, monthlyContribution, principal, year) => {
     monthlyContribution = monthlyContribution + getters.monthlyCashFlow;
-    principal = principal - getters.totalCostToClose;
+    principal = principal - getters.upfrontCost;
     const stockValue = getters.stockValue(interestRate, monthlyContribution, principal, year);
-    const propertyValue = getters.downPaymentAmount + ((getters.loanAmount / state.termYears) * year);
-    return stockValue + propertyValue;
+    const propertyValue = state.rehabbing ? state.afterRepairValue : state.purchasePrice;
+    const equity = getters.downPaymentAmount + (((propertyValue - getters.downPaymentAmount) / state.termYears) * year);
+    return stockValue + equity;
   },
   stockAndPropertyValues: (state, getters) => (interestRate, monthlyContribution, principal) => {
     var values = [];

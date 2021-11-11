@@ -15,6 +15,7 @@ export default {
       "downPaymentAmount",
       "closingCosts",
       "loanPointsAmount",
+      "repairCosts"
     ]),
     expenses() {
       return [
@@ -30,6 +31,10 @@ export default {
           label: "Loan Points",
           value: this.loanPointsAmount,
         },
+        {
+          label: "Repair Costs",
+          value: this.repairCosts
+        }
       ];
     },
   },

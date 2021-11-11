@@ -36,7 +36,7 @@ export default {
     PercentInput,
   },
   computed: {
-    ...mapGetters(["investmentComparison", "totalCostToClose"]),
+    ...mapGetters(["investmentComparison", "upfrontCost"]),
     ...sync(["monthlyStockContribution", "annualStockInterest", "principal"]),
     series() {
       return [
@@ -112,10 +112,10 @@ export default {
     },
   },
   watch: {
-    totalCostToClose: {
+    upfrontCost: {
       immediate: true,
-      handler: function (totalCostToClose) {
-        this.principal = totalCostToClose;
+      handler: function (upfrontCost) {
+        this.principal = upfrontCost;
       },
     },
   },

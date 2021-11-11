@@ -37,7 +37,7 @@
 
 <script>
 import MonthlyExpensesChart from "@/components/charts/MonthlyExpensesChart.vue";
-import CashToCloseChart from "@/components/charts/CashToCloseChart.vue";
+import UpfrontCostChart from "@/components/charts/UpfrontCostChart.vue";
 import LoanChart from "@/components/charts/LoanChart.vue";
 import InvestmentComparisonChart from "@/components/charts/InvestmentComparisonChart.vue";
 import Result from "@/components/Result.vue";
@@ -47,7 +47,7 @@ import { mapGetters } from "vuex";
 export default {
   components: {
     MonthlyExpensesChart,
-    CashToCloseChart,
+    UpfrontCostChart,
     LoanChart,
     InvestmentComparisonChart,
     Result,
@@ -87,8 +87,8 @@ export default {
           chart: "monthly-expenses-chart",
         },
         {
-          label: "Cash To Close",
-          chart: "cash-to-close-chart",
+          label: "Upfront Cost",
+          chart: "upfront-cost-chart",
         },
         {
           label: "Loan",

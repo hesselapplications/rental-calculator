@@ -18,12 +18,12 @@
     </v-col>
 
     <!-- REHABBING -->
-    <!-- <v-col cols="12">
-          <v-checkbox
-            v-model="rehabbing"
-            label="I will be rehabbing this property"
-          ></v-checkbox>
-        </v-col> -->
+    <v-col cols="12">
+      <v-checkbox
+        v-model="rehabbing"
+        label="I will be rehabbing this property"
+      ></v-checkbox>
+    </v-col>
 
     <template v-if="rehabbing">
       <!-- AFTER REPAIR VALUE -->
